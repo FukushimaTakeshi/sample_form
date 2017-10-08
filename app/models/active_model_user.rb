@@ -1,13 +1,9 @@
-class User < ApplicationRecord
-  # validates :name, presence: true, length: { maximum: 50 }
-  # validates :name_kana, presence: true
-  # validates :tel, presence: true
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  # validates :mail, presence: true, length: { maximum: 255 },
-  #                  format: { with: VALID_EMAIL_REGEX },
-  #                  uniqueness: { case_sensitive: false }
-  # validates :birthday, presence: true
-  # validates :question,  length: { maximum: 50 }
+class ActiveModelUser
+  include ActiveModel::Model
+
+  attr_accessor :name, :name_kana, :tel, :mail, :birthday, :question
+  define_model_callbacks :save
+  before_save { self.valid? }
 
   validate :add_error
 
@@ -22,6 +18,12 @@ class User < ApplicationRecord
     # errors.add(:tel, "電話番号が入力されていません。") if tel.empty?
     # errors.add(:mail, "メールアドレスが入力されていません。") if mail.empty?
     # errors.add(:birthday, "生年月日が入力されていません。") if birthday.empty?
+  end
+
+  def save
+    run_callbacks :save do
+      # raise
+    end
   end
 
 end
