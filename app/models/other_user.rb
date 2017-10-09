@@ -1,4 +1,4 @@
-class ActiveModelUser
+class OtherUser
   include ActiveModel::Model
 
   attr_accessor :name, :name_kana, :tel, :mail, :birthday, :question

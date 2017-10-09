@@ -1,4 +1,4 @@
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_for(@other_user, url: '/other_users/new') do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :question %>
-    <%= form.text_field :question, id: :user_question %>
+    <%= form.text_area :question, id: :user_question, size: "80x10" %>
   </div>
 
   <div class="actions">

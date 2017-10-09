@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get '/active_model_user', to: 'users#new_active_model', as: 'active_model_user'
-  post '/active_model_user', to: 'users#create_active_model'
+
+  get 'other_users/new', as: 'other_user'
+  post 'other_users/new', to: 'other_users#create'
 
   resources :users
 
